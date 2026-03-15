@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>六爻起卦</title>
+    <meta name="description" content="六爻数字起卦网页。" />
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="panel hero">
+        <div class="hero-copy">
+          <p class="section-tag">静心观象</p>
+          <h1>六爻起卦</h1>
+          <p class="hero-lead">
+            以数入卦，观本卦与之卦。数字起卦与命令式起卦分开呈现，只保留真正有用的内容。
+          </p>
+        </div>
+        <div class="hero-seal" aria-hidden="true">
+          <span>卦</span>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel ritual-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-tag">问数</p>
+              <h2>任选一种方式</h2>
+            </div>
+            <p class="panel-note">两种方式请只填写一项。</p>
+          </div>
+
+          <form id="divination-form" class="divination-form" novalidate>
+            <div class="mode-grid">
+              <label class="mode-card mode-card--direct" for="number-input">
+                <span class="mode-card-tag">数字起卦</span>
+                <strong>直接取数</strong>
+                <p>输入一个数字，按通常方式起卦。</p>
+                <input
+                  id="number-input"
+                  name="number"
+                  type="text"
+                  autocomplete="off"
+                  value="114514"
+                  placeholder="如 46"
+                />
+              </label>
+
+              <label class="mode-card mode-card--command" for="command-input">
+                <span class="mode-card-tag">命令式起卦</span>
+                <span class="mode-card-badge">建议优先使用</span>
+                <strong>自动补全方括号</strong>
+                <p>只填数字，页面会按 `[46]` 这类写法处理。</p>
+                <input
+                  id="command-input"
+                  name="commandNumber"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="如 46"
+                />
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <p class="field-hint">保留一种方式即可，另一项留空。</p>
+              <button id="submit-button" class="submit-button" type="submit" disabled>
+                起卦
+              </button>
+            </div>
+          </form>
+
+          <p id="message" class="message" role="status" aria-live="polite">
+            正在装载卦辞数据……
+          </p>
+        </section>
+
+        <section id="result-panel" class="panel result-panel" hidden>
+          <div class="result-header">
+            <div>
+              <p class="section-tag">得卦</p>
+              <h2 id="result-title">卦象未成</h2>
+            </div>
+            <p id="seed-note" class="seed-note"></p>
+          </div>
+
+          <section class="coin-panel" aria-label="掷币过程">
+            <div class="oracle-head">
+              <div>
+                <p class="section-tag">掷币</p>
+                <h3>六轮三币</h3>
+              </div>
+              <p class="result-note">依次自初爻至上爻演示</p>
+            </div>
+            <div id="ritual-timeline" class="ritual-timeline"></div>
+          </section>
+
+          <div class="gua-grid">
+            <article class="gua-card">
+              <div class="gua-card-head">
+                <span class="gua-card-tag">本卦</span>
+                <h3 id="base-name">-</h3>
+              </div>
+              <div id="base-meta" class="gua-meta"></div>
+              <div id="base-hexagram"></div>
+            </article>
+
+            <article class="gua-card">
+              <div class="gua-card-head">
+                <span class="gua-card-tag">之卦</span>
+                <h3 id="changed-name">-</h3>
+              </div>
+              <div id="changed-meta" class="gua-meta"></div>
+              <div id="changed-hexagram"></div>
+            </article>
+          </div>
+
+          <section class="oracle-panel">
+            <div class="oracle-head">
+              <div>
+                <p class="section-tag">断辞</p>
+                <h3>卦辞与爻辞</h3>
+              </div>
+              <p id="result-note" class="result-note"></p>
+            </div>
+            <div id="result-texts" class="oracle-texts"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./app.mjs"></script>
+  </body>
+</html>
